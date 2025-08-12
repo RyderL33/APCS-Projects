@@ -62,6 +62,27 @@ public class Main implements Directions{
     r.putBeeper();
     r.turnLeft();
     r.move();
-
+	r.turnLeft();
+	r.move();
+	r.putBeeper();
+	r.move();
+	r.turnLeft();
+	r.turnLeft();
+	r.turnLeft();
+	r.move();
+	r.putBeeper(); // end of diagonal on R
+	r.move();
+	r.putBeeper();
+	r.turnLeft(3);
+	r.move();
+	r.putBeeper();
+	r.move();
+	r.putBeeper();
+	r.turnLeft(); // end of bottom part of R curve in middle
+	r.move();
+	r.putBeeper();
+	r.move();
+	r.putBeeper();
   }
+
 }
