@@ -11,12 +11,16 @@ public class Driver implements Directions {
 
 
 	// You will add very many variables!!
-	// variables
-	int roomArea;
-	int numPiles;
-	int largestPile;
-	double avgPileSIZE;
-	double percentDirty;
+	// variables to print
+	int roomArea = 0;
+	int numPiles = 0;
+	int largestPile = 0;
+	double avgPileSIZE = 0;
+	double percentDirty = 0;
+	int numBeepers = 0;
+
+	//variables for calculation
+	
 
 	
 	public static void main(String[] args) {
@@ -40,7 +44,7 @@ public class Driver implements Directions {
 
 		World.readWorld(wrldName);
     	World.setVisible(true);
-		Robot r = new Robot (7,6,East,1000); //set robot location, direction, and # of beepers
+		Robot r = new Robot (7,6,East,0); //set robot location, direction, and # of beepers
 	
 
     
@@ -53,10 +57,48 @@ public class Driver implements Directions {
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
-		roomba.move();
 
+		// movement
 
-  
+		for (;;)
+		{
+			if (r.frontIsClear() == false && r.facingEast() == true)
+			{
+				r.turnLeft();
+				r.move();
+				r.turnLeft();
+			}	
+			else
+			{
+				r.move();
+			}
+
+			if (r.frontIsClear() == false && r.facingWest() == true)
+			{
+				for (int countTurn = 0; i <= 3; i++)
+				{
+					r.turnLeft();
+				}
+				r.move();
+				for (int countTurn = 0; i <= 3; i++)
+				{
+					r.turnLeft();
+				}
+			}
+			else
+			{
+				r.move();
+			}
+		}
+
+		//variable counters
+		while (r.nextToABeeper() == true)
+		{
+			r.pickBeeper();
+			int numBeepers= numBeepers + 1;
+		}
+
+	
 
 
 
