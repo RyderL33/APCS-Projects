@@ -75,12 +75,12 @@ public class Driver implements Directions {
 
 			if (r.frontIsClear() == false && r.facingWest() == true)
 			{
-				for (int countTurn = 0; i <= 3; i++)
+				for (int countTurn = 0; countTurn <= 3; countTurn++)
 				{
 					r.turnLeft();
 				}
 				r.move();
-				for (int countTurn = 0; i <= 3; i++)
+				for (int countTurn = 0; countTurn <= 3; countTurn++)
 				{
 					r.turnLeft();
 				}
@@ -126,3 +126,4 @@ public class Driver implements Directions {
   }
 
 }
+
