@@ -44,7 +44,7 @@ public class Driver implements Directions {
 
 		World.readWorld(wrldName);
     	World.setVisible(true);
-		Robot r = new Robot (7,6,East,0); //set robot location, direction, and # of beepers
+		Robot r = new Robot (7,6,East,100); //set robot location, direction, and # of beepers
 	
 
     
@@ -59,7 +59,6 @@ public class Driver implements Directions {
 		// what is that and why are we getting it?
 
 		// movement
-
 		for (;;)
 		{
 			if (r.frontIsClear() == false && r.facingEast() == true)
@@ -75,12 +74,12 @@ public class Driver implements Directions {
 
 			if (r.frontIsClear() == false && r.facingWest() == true)
 			{
-				for (int countTurn = 0; countTurn <= 3; countTurn++)
+				for (int a = 0; a <= 3; a++)
 				{
 					r.turnLeft();
 				}
 				r.move();
-				for (int countTurn = 0; countTurn <= 3; countTurn++)
+				for (int b = 0; b <= 3; b++)
 				{
 					r.turnLeft();
 				}
@@ -89,20 +88,17 @@ public class Driver implements Directions {
 			{
 				r.move();
 			}
+
+			if (r.nextToABeeper() == true)
+			{
+				r.pickBeeper();
+				numBeepers++; 
+			}
+
 		}
 
-		//variable counters
-		while (r.nextToABeeper() == true)
-		{
-			r.pickBeeper();
-			int numBeepers= numBeepers + 1;
-		}
-
-	
-
-
-
-
+		
+		
 
   	/** This method displays the results of cleaning the room.  All of the info
 	 * in the pdf that describes the problem need to be displayed.  You can present
@@ -118,12 +114,6 @@ public class Driver implements Directions {
 	System.out.println("Percent dirty was ");
 
 
-
-
-
-
-
   }
 
 }
-
