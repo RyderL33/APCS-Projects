@@ -17,6 +17,9 @@ public class Driver implements Directions {
 	int largestPile = 0;
 	double avgPileSIZE = 0;
 	double percentDirty = 0;
+		int numTilesTotal = 0;
+		int numTilesDirty = 0;
+		// to find % dirty, take numTilesDirty divided by numTilesTotal
 	int numBeepers = 0;
 
 	//variables for calculation
@@ -58,60 +61,78 @@ public class Driver implements Directions {
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
 
-		// movement
-		for (;;)
-		{
+		
+		
 			if (r.frontIsClear() == false && r.facingEast() == true)
-			{
-				r.turnLeft();
-				r.move();
-				r.turnLeft();
-			}	
+				{
+					r.turnLeft();
+					r.move();
+					r.turnLeft();
+					int numTilesTotal++;
+				}	
 			else
-			{
-				r.move();
-			}
+				{
+					r.move();
+					int numTilesTotal++;
+				}
 
 			if (r.frontIsClear() == false && r.facingWest() == true)
-			{
-				for (int a = 0; a <= 3; a++)
 				{
-					r.turnLeft();
+					for (int a = 0; a <= 3; a++)
+						{
+							r.turnLeft();
+						}
+					r.move();
+					int numTilesTotal++;
+					for (int b = 0; b <= 3; b++)
+						{
+							r.turnLeft();
+						}
 				}
-				r.move();
-				for (int b = 0; b <= 3; b++)
-				{
-					r.turnLeft();
-				}
-			}
 			else
-			{
-				r.move();
-			}
+				{
+					r.move();
+					int numTilesTotal++;
+				}
 
-			if (r.nextToABeeper() == true)
-			{
-				r.pickBeeper();
-				numBeepers++; 
-			}
+			while (r.nextToABeeper() == true)
+				{
+					r.pickBeeper();
+					int numBeepers++;
+				}
 
-		}
+			
 
+
+
+
+			
 		
-		
+
+
+	
+
+
+
+
 
   	/** This method displays the results of cleaning the room.  All of the info
 	 * in the pdf that describes the problem need to be displayed.  You can present
 	 * this info in the console (boring) or you can present using JOptionPane (cool!)
 	 */
 
-    System.out.println("The biggest pile was ");
-	System.out.println("Number of piles was");
-	System.out.println("Total number of beepers was ");
-	System.out.println("Average pile size ");
-	System.out.println("Area of room was ");
-	System.out.println("Location of the largest pile ");
-	System.out.println("Percent dirty was ");
+    // System.out.println("The biggest pile was ");
+	// System.out.println("Number of piles was");
+	// System.out.println("Total number of beepers was ");
+	// System.out.println("Average pile size ");
+	// System.out.println("Area of room was ");
+	// System.out.println("Location of the largest pile ");
+	// System.out.println("Percent dirty was ");
+
+
+
+
+
 
 
   }
