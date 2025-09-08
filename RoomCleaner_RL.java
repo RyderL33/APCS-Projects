@@ -22,6 +22,7 @@
 		int roomArea = 0;
 		int numPiles = 0;
 		int largestPile = 0;
+			int pileBeepers = 0;
 		double avgPileSIZE = 0;
 		double percentDirty = 0;
 			int numTilesTotal = 0;
@@ -51,7 +52,7 @@
 			World.readWorld(wrldName);
 			World.setVisible(true);
 			Robot r = new Robot (7,6,East,100); //set robot location, direction, and # of beepers
-		
+			World.setDelay(20);
 
 		
 
@@ -66,33 +67,43 @@
 
 
 		// at start of program, get the room size (num of rows and columns)
-		while (r.frontIsClear() == true)
-			{
-				
-				r.move();
-				roomsizeX
-			}
-
 		for (;;)
 		{
-			if (r.frontIsClear() == true)
+
+
+			while (r.frontIsClear() == true && r.nextToABeeper() == true)
 				{
-					while (r.nextToABeeper() == true)
+					r.pickBeeper();
+					numBeepers++;
+					pileBeepers++;
+					if (pileBeepers > largestPile)
 						{
-							r.pickBeeper();
-							numBeepers++;
+							largestPile = pileBeepers;
 						}
+				}
+					pileBeepers = 0;
 					if (r.nextToABeeper() == false)
 						{
 							numTilesEmpty++;
 						}
 					r.move();
 					numTilesTotal++;
-				}
+
 			
 			if (r.frontIsClear() == false && r.facingEast() == true)
 				{
 					r.turnLeft();
+					if (r.facingNorth() == true && r.frontIsClear() == false) // check to make sure you aren't hitting wall, if you are print values and end loop
+						{
+							System.out.println("The biggest pile was " + largestPile);
+							System.out.println("Number of piles was" + (numTilesTotal - numTilesEmpty));
+							System.out.println("Total number of beepers was " + numBeepers);
+							System.out.println("Average pile size " + (double) numBeepers/(numTilesTotal - numTilesEmpty));
+							System.out.println("Area of room was " + numTilesTotal);
+							System.out.println("Location of the largest pile ");
+							System.out.println("Percent dirty was " + (double) numTilesEmpty/numTilesTotal);
+							break;
+						}
 					r.move();
 					r.turnLeft();
 					numTilesTotal++;
@@ -103,6 +114,17 @@
 					for (int a = 0; a < 3; a++)
 						{
 							r.turnLeft();
+						}
+					if (r.facingNorth() == true && r.frontIsClear() == false) // check to make sure you aren't hitting wall, if you are print values and end loop
+						{
+							System.out.println("The biggest pile was " + largestPile);
+							System.out.println("Number of piles was" + (numTilesTotal - numTilesEmpty));
+							System.out.println("Total number of beepers was " + numBeepers);
+							System.out.println("Average pile size " + (double) numBeepers/(numTilesTotal - numTilesEmpty));
+							System.out.println("Area of room was " + numTilesTotal);
+							System.out.println("Location of the largest pile ");
+							System.out.println("Percent dirty was " + (double) numTilesEmpty/numTilesTotal);
+							break;
 						}
 					r.move();
 					numTilesTotal++;
@@ -126,7 +148,7 @@
 		 * this info in the console (boring) or you can present using JOptionPane (cool!)
 		 */
 
-		// System.out.println("The biggest pile was ");
+		// System.out.println("The biggest pile was " + largestPile);
 		// System.out.println("Number of piles was" + (numTilesTotal - numTilesEmpty));
 		// System.out.println("Total number of beepers was " + numBeepers);
 		// System.out.println("Average pile size " + (double) numBeepers/(numTilesTotal - numTilesEmpty));
@@ -142,4 +164,4 @@
 
 	}
 
-	}
+	}		
