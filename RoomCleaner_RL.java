@@ -47,12 +47,12 @@
 		 * JOptionPane.
 		 */
 
-		String wrldName = "basicRoom.wld";
+		String wrldName = "Final.wld";
 
 			World.readWorld(wrldName);
 			World.setVisible(true);
-			Robot r = new Robot (7,6,East,100); //set robot location, direction, and # of beepers
-			World.setDelay(2);
+			Robot r = new Robot (26,101,East,100); //set robot location, direction, and # of beepers
+			World.setDelay(0);
 
 		
 
