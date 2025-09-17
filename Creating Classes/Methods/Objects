@@ -1,0 +1,11 @@
+  public class Main { // name in green is case sensitive
+
+    public static void main(String[] args)
+    {
+      Rectangle rect1 = new Rectangle(0, 10, 50, 12); 
+      rect1.calcArea();
+
+      Rectangle rect2 = new Rectangle(0, 10, 500, 120)
+      rect2.calcArea();
+    }
+  }
