@@ -1,17 +1,25 @@
 import java.util.Scanner;
 import java.io.File;
+import java.io.IOException;
 
 public class ReadData {
 
-    public void getData()
+    public void read()
     {
+        Scanner in;
         try
         {
-        Scanner in = new Scanner (new File("songs2025-2026.csv"))
+            in = new Scanner (new File("songs 2025-2026.csv"));
+            while(in.hasNextLine())
+            {
+                System.out.println(in.nextLine());
+            }
+            in.close();
         }
-        catch()
+        catch(IOException e)
         {
-            
+            System.out.println("Error in file reading");
         }
+        
     }
 }
