@@ -18,12 +18,18 @@ public class ReadData {
                 String artist = line.split(";")[0];
                 String title = line.split(";")[1];
                 String year = line.split(";")[2];
+                String length = line.split(";")[3];
+                String danceability = line.split(";")[3];
+                String shakeness = line.split(";")[3];
+                String obscenity =  line.split(";")[3];
+                String loudness =  line.split(";")[3];
+                
+                int year = Integer.parseInt(year);
 
 
+                //songs[count] = new Song (artist, title, year, length, danceability, shakeness, obscenity, loudness);
 
-                songs[count] = new Song (artist, title, year);
-
-                System.out.println(count + ": " + line.split(";")[2]);
+                //System.out.println(count + ": " + line.split(";")[2]);
                 count++;
 
             }
