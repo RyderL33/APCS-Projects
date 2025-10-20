@@ -1,10 +1,13 @@
 import java.util.Scanner;
+
+import javax.swing.plaf.basic.BasicTreeUI.TreeTraverseAction;
+
 import java.io.File;
 import java.io.IOException;
 
 public class ReadData {
 
-    public void read()
+    public Song[] read() //switch void to Song[] if you need to return something
     {
         Scanner in;
         Song [] songs = new Song[28372];
@@ -17,17 +20,16 @@ public class ReadData {
                 String line = in.nextLine();
                 String artist = line.split(";")[0];
                 String title = line.split(";")[1];
-                String year = line.split(";")[2];
-                String length = line.split(";")[3];
-                String danceability = line.split(";")[3];
-                String shakeness = line.split(";")[3];
-                String obscenity =  line.split(";")[3];
-                String loudness =  line.split(";")[3];
-                
-                int year = Integer.parseInt(year);
+                int year = Integer.parseInt(line.split(";")[2]);
+                String genre = line.split(";")[3];
+                int length = Integer.parseInt(line.split(";")[4]);
+                double shakeability = Double.parseDouble(line.split(";")[5]);
+                double obscenity =  Double.parseDouble(line.split(";")[6]);
+                double danceability = Double.parseDouble(line.split(";")[7]);
+                double loudness =  Double.parseDouble(line.split(";")[8]);
+                String topic = line.split(";")[9];
 
-
-                //songs[count] = new Song (artist, title, year, length, danceability, shakeness, obscenity, loudness);
+                songs[count] = new Song(artist, title, topic, genre, year, length, danceability, shakeability, obscenity, loudness);
 
                 //System.out.println(count + ": " + line.split(";")[2]);
                 count++;
@@ -41,6 +43,36 @@ public class ReadData {
             System.out.println("Error in file reading");
         }
         
+        return songs;
     }
-    
+
+
+    public String getLongestTitle (Song [] list)
+    {
+        String title = "";
+        
+        for(int i = 0; i < 28371; i++)
+        {
+            String newTitle = list[i].getTitle();
+            if(newTitle.length() > title.length())
+            {
+                title = newTitle;
+            }
+        }
+        return title;
+    }
+
+    public String getLoudest(Song [] list)
+    {
+        double loundess = 0;
+        Song aSong = list[0]
+
+        if(song[i].getLoudness() > aSong.loudness())
+        {
+            Song = song[i];
+        }
+        return loudness;
+    }    
+
+
 }
