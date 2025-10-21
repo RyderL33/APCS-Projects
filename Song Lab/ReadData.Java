@@ -7,14 +7,17 @@ import java.io.IOException;
 
 public class ReadData {
 
+    int count = 0;
+
     public Song[] read() //switch void to Song[] if you need to return something
     {
         Scanner in;
         Song [] songs = new Song[28372];
         try
         {
-            int count = 1;
+
             in = new Scanner (new File("songs 2025-2026 ANSI ; separated.csv"));
+            in.nextLine(); //first row has names for data that column holds, can't parseInt on a set of words, need to skip this line
             while(in.hasNextLine())
             {
                 String line = in.nextLine();
@@ -34,6 +37,11 @@ public class ReadData {
                 //System.out.println(count + ": " + line.split(";")[2]);
                 count++;
 
+
+                //add stuff in while true loop here 
+
+
+
             }
             in.close();
          
@@ -47,32 +55,119 @@ public class ReadData {
     }
 
 
-    public String getLongestTitle (Song [] list)
+    public int totalNumSongs (Song [] list)
     {
-        String title = "";
-        
-        for(int i = 0; i < 28371; i++)
-        {
-            String newTitle = list[i].getTitle();
-            if(newTitle.length() > title.length())
-            {
-                title = newTitle;
-            }
-        }
-        return title;
+        return count;
     }
 
-    public String getLoudest(Song [] list)
+
+    public int numSongs1982 (Song [] list)
     {
-        double loundess = 0;
-        Song aSong = list[0]
-
-        if(song[i].getLoudness() > aSong.loudness())
+        int numSongs1982 = 0;
+        for (int i = 0; i < count; i++)
         {
-            Song = song[i];
+            int year = list[i].getYear();
+            if (year == 1982)
+            {
+                numSongs1982++;
+            }
         }
-        return loudness;
-    }    
+        return numSongs1982;
+    }
 
+
+    public int numSongs2000 (Song [] list)
+    {
+        int numSongs2000 = 0;
+        for (int i = 0; i < count; i++)
+        {
+            int year = list[i].getYear();
+            if (year == 2000)
+            {
+                numSongs2000++;
+            }
+        }
+        return numSongs2000;
+    }
+
+
+    public int numSongs2015 (Song [] list)
+    {
+        int numSongs2015 = 0;
+        for (int i = 0; i < count; i++)
+        {
+            int year = list[i].getYear();
+            if (year == 2015)
+            {
+                numSongs2015++;
+            }
+        }
+        return numSongs2015;
+    }
+
+    
+    public String getLongestTitle (Song [] list)
+    {
+    String titleLongest = "";
+
+        for(int i = 0; i < count; i++)
+        {
+            String newTitle = list[i].getTitle();
+            if(newTitle.length() > titleLongest.length())
+            {
+                titleLongest = newTitle;
+            }
+        }
+        return titleLongest;
+    }
+
+
+    public int numSongsDanceable (Song [] list)
+    {
+    int numSongsDanceable = 0;
+
+        for(int i = 0; i < count; i++)
+        {
+            double danceability = (list[i].getDanceability());
+            if(danceability > .8)
+            {
+                numSongsDanceable++;
+            }
+        }
+        return numSongsDanceable;
+    }
+
+
+    public int shakeLowest (Song [] list)
+    {
+    String shakeLowest = "";
+    double shakeability1 = 0;
+    
+        for(int i = 0; i < count; i++)
+        {
+            double shakeability2 = (list[i].getShakeability());
+            if(shakeability2 > shakeability1)
+            {
+                shakeability 
+            }
+        }
+        return numSongsDanceable;
+    }
+
+
+    public String shakeLowest (Song [] list)
+    {
+    String shakeLowest = "";
+
+        for(int i = 0; i < count; i++)
+        {
+            String newTitle = list[i].getShakeability();
+            if(newTitle.length() > titleLongest.length())
+            {
+                shakeLowest = 
+            }
+        }
+        return shakeLowest;
+    }
 
 }
