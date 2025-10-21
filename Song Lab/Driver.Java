@@ -10,11 +10,11 @@
             //Song s = new Song();
             //s.getArtist();
 
-            System.out.println("Total number of songs: " );
-            System.out.println("Total number of songs from 1982: ");
-            System.out.println("Total number of songs from 2000: ");
-            System.out.println("Total number of songs from 2015: ");
-            System.out.println("Number of songs with danceability ratings > 0.80: ");
+            System.out.println("Total number of songs: " + r.totalNumSongs(list));
+            System.out.println("Total number of songs from 1982: " + r.numSongs1982(list));
+            System.out.println("Total number of songs from 2000: " + r.numSongs2000(list));
+            System.out.println("Total number of songs from 2015: " + r.numSongs2015(list));
+            System.out.println("Number of songs with danceability ratings > 0.80: " + r.numSongsDanceable(list));
             System.out.println("Song with largest length: " + r.getLongestTitle(list));
             System.out.println("Song with lowest shakeability score: ");
             System.out.println("Loudest song (song with the highest loudness rating): ");
