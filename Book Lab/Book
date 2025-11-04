@@ -8,38 +8,38 @@ public class Book
 {
   public String pigLatin(String word)
   {
-  String newWord = "";
-  String digits = "0123456789";
-  String vowels = "aeoiouy";
-    
-  if(word.length() == 0)
-  {
-    return word;
-  }
-  else if (digits.contains(word.substring(0,1)))
-  {
-    return word;
-  }
-  else if (vowels.contains(word.charAt(0)))
-  {
-    return word + "yay";
-  }
-  else if(word.length() == 1)
-  {
-    return word + "ay";
-  }
-
-  for (int i = 0; i < word.length(); i++)
-  {
-    if(vowels.indexOf(word.substring(i, i+1)) >= 0)
+    String newWord = "";
+    String digits = "0123456789";
+    String vowels = "aeoiouy";
+      
+    if(word.length() == 0)
     {
-        String left = word.substring(0, i);
-        String right = word.substring(i);
-        return right + left + "ay";
+      return word;
     }
-  }
+    else if (digits.indexOf(word.substring(0,1)) >= 0)
+    {
+      return word;
+    }
+    else if (vowels.indexOf(word.substring(0, 1)) >= 0)
+    {
+      return word + "yay";
+    }
+    else if(word.length() == 1)
+    {
+      return word + "ay";
+    }
 
-  return newWord;
+    for (int i = 0; i < word.length(); i++)
+    {
+      if(vowels.indexOf(word.substring(i, i+1)) >= 0) //split word in half and switch left and right
+      {
+          String left = word.substring(0, i);
+          String right = word.substring(i);
+          return right + left + "ay";
+      }
+    }
+
+    return newWord;
 
 
 
@@ -54,6 +54,24 @@ public class Book
   public String translateWord(String word)    //to share with class
   {
     String convertedWord = "";
+    
+    for (int i = 0; i<word.length()-1; i++)
+    {
+      String single = word.substring(i,i+1);
+      char check = single.charAt(0);
+      int asciiValue = (int) check;
+      if ((asciiValue >= 33 && asciiValue <= 47) || (asciiValue >= 58 && asciiValue <= 64)) //check for capital
+      {
+
+      }
+
+      if () //check for punctuation
+      {
+        
+      }
+    }
+
+     
 
     return convertedWord;
   }
