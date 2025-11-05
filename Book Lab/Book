@@ -31,10 +31,10 @@ public class Book
 
     for (int i = 0; i < word.length(); i++)
     {
-      if(vowels.indexOf(word.substring(i, i+1)) >= 0) //split word in half and switch left and right
+      if(vowels.indexOf(word.substring(i, i+1)) >= 0) //finds the first vowel 
       {
-          String left = word.substring(0, i);
-          String right = word.substring(i);
+          String left = word.substring(0, i);//makes a consonant (cluster) of everything before 1st vowel
+          String right = word.substring(i);//rest of the word starting from the 1st vowel
           return right + left + "ay";
       }
     }
@@ -45,31 +45,62 @@ public class Book
 
   }
   
-  public int endPunctuation(String word)  //return the index of where the punctuation is at the end of a String. If it is all punctuation return 0, if there is no punctuation return -1
+  public int endPunctuation(String word)  // . If it is all punctuation return 0, if there is no punctuation return -1
   {
+    int index = 0;
+    int count = 0;
 
-    return -1;
+    for (int i = 0; i<word.length()-1; i++) //for the length of the string
+    {
+      String single = word.substring(i,i+1);
+      char check = single.charAt(0);
+      char checkIndex = word.charAt(i);
+      int asciiValue = (int) check;
+        if ((asciiValue >= 33 && asciiValue <= 47) || (asciiValue >= 58 && asciiValue <= 64)) //count number of times a punctuation mark appears
+      {
+        count++;
+      }
+        if (!Character.isLetterOrDigit(checkIndex) && !Character.isWhitespace(checkIndex))
+        {
+          index = i;
+        }
+    }
+    if (count == word.length()) //if number of times punctuation appears equals to word length return 0
+      {
+        return 0;
+      }
+    else if (count == 0) //if no punctuation at all, return -1
+    {
+      return -1;
+    }
+    else
+    {
+      return index;
+    }
   }
 
   public String translateWord(String word)    //to share with class
   {
-    String convertedWord = "";
-    
     for (int i = 0; i<word.length()-1; i++)
     {
       String single = word.substring(i,i+1);
       char check = single.charAt(0);
       int asciiValue = (int) check;
-      if ((asciiValue >= 33 && asciiValue <= 47) || (asciiValue >= 58 && asciiValue <= 64)) //check for capital
+      int indexPunct = 0;
+      int indexCap = 0;
+      if ((asciiValue >= 33 && asciiValue <= 47) || (asciiValue >= 58 && asciiValue <= 64)) //check for punctuation
       {
-
+        indexPunct = i;
+      }
+      if (asciiValue >=65 && asciiValue <= 90) //check for captial letter
+      {
+        indexCap = i;
       }
 
-      if () //check for punctuation
-      {
-        
-      }
+      String convertedWord = new String();
     }
+    //take apart string, rearrange, then put back together
+    
 
      
 
