@@ -1,0 +1,117 @@
+import java.io.*;
+import java.util.*;
+
+public class PigLatinTranslator {
+
+    public static void main(String[] args) {
+        // Specify the input and output file paths
+        String inputFilePath = "path_to_your_book.txt"; // Path to your book file
+        String outputFilePath = "translated_book.txt"; // Path where the translated book will be saved
+
+        try {
+            // Read the entire book content from the input file
+            String bookContent = readFile(inputFilePath);
+            
+            // Translate the content to Pig Latin
+            String translatedContent = translateSentence(bookContent);
+
+            // Write the translated content to the output file
+            writeToFile(outputFilePath, translatedContent);
+
+            System.out.println("Translation complete! Translated book saved to " + outputFilePath);
+        } catch (IOException e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    // Method to read the content of a file
+    public static String readFile(String filePath) throws IOException {
+        StringBuilder content = new StringBuilder();
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        
+        while ((line = reader.readLine()) != null) {
+            content.append(line).append("\n");  // Read line by line and add it to the StringBuilder
+        }
+        reader.close();
+        return content.toString();
+    }
+
+    // Method to write content to a file
+    public static void writeToFile(String filePath, String content) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+        writer.write(content);
+        writer.close();
+    }
+
+    // Method to translate an entire sentence (or text) into Pig Latin
+    public static String translateSentence(String sentence) {
+        String[] words = sentence.split(" ");
+        StringBuilder retSentence = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            String translatedWord = translateWord(word);
+            retSentence.append(translatedWord);
+            if (i < words.length - 1) {
+                retSentence.append(" ");
+            }
+        }
+        return retSentence.toString();
+    }
+
+    // Method to translate a single word into Pig Latin
+    public static String translateWord(String word) {
+        // Handle punctuation by splitting the word into the base word and punctuation
+        String punctuation = "";
+        if (word.length() > 0 && !Character.isLetterOrDigit(word.charAt(word.length() - 1))) {
+            punctuation = String.valueOf(word.charAt(word.length() - 1));  // Get the punctuation mark.
+            word = word.substring(0, word.length() - 1);  // Remove punctuation from the word.
+        }
+
+        // Translate the base word to Pig Latin
+        String pigLatinWord = toPigLatin(word);
+        
+        // Add the punctuation back if there was any
+        return pigLatinWord + punctuation;
+    }
+
+    // Method to convert a word into Pig Latin
+    public static String toPigLatin(String word) {
+        // Edge case for empty words
+        if (word.length() == 0) return word;
+
+        // Handle capitalization
+        boolean isCapitalized = Character.isUpperCase(word.charAt(0));
+        
+        // Convert the word to lowercase for easier handling
+        word = word.toLowerCase();
+        
+        // Check if the word starts with a vowel (a, e, i, o, u)
+        if ("aeiou".indexOf(word.charAt(0)) >= 0) {
+            // If it starts with a vowel, add "way" to the end
+            word = word + "way";
+        } else {
+            // If it starts with a consonant, move the first consonant or consonant cluster to the end and add "ay"
+            int vowelIndex = -1;
+            for (int i = 0; i < word.length(); i++) {
+                if ("aeiou".indexOf(word.charAt(i)) >= 0) {
+                    vowelIndex = i;
+                    break;
+                }
+            }
+
+            if (vowelIndex != -1) {
+                // Move the consonant(s) to the end
+                word = word.substring(vowelIndex) + word.substring(0, vowelIndex) + "ay";
+            }
+        }
+
+        // If the original word was capitalized, capitalize the first letter of the Pig Latin word
+        if (isCapitalized) {
+            word = word.substring(0, 1).toUpperCase() + word.substring(1);
+        }
+        
+        return word;
+    }
+}
