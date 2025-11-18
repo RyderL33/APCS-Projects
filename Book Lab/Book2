@@ -19,19 +19,16 @@ public class Book
             URL url = new URL(link);
             Scanner s = new Scanner(url.openStream());
 
-            // Using StringBuilder for efficient text accumulation
             StringBuilder translatedBook = new StringBuilder();
 
             while(s.hasNextLine())
             {
                 String text = s.nextLine();
-                // Translate the line and append it
                 translatedBook.append(translateSentence(text));
-                // Add a newline character to maintain the original line breaks
                 translatedBook.append("\n"); 
             }
             s.close();
-            book = translatedBook.toString(); // Store the final translated text
+            book = translatedBook.toString(); 
         }
         catch(IOException ex)
         {
@@ -39,21 +36,16 @@ public class Book
         }
     }
 
-    // New method to retrieve the translated book
+   
     public String getTranslatedBook() {
         return book;
     }
 
-    /**
-     * Counts the total number of words in the translated book.
-     * @return The number of words.
-     */
     public int wordCount()
     {
         if (book == null || book.trim().isEmpty()) {
             return 0;
         }
-        // Split the book content by one or more whitespace characters (including spaces, tabs, newlines)
         String[] words = book.trim().split("\\s+");
         return words.length;
     }
@@ -82,7 +74,6 @@ public class Book
 
     public String translateWord(String word)
     {
-        // Added check to prevent StringIndexOutOfBoundsException if an empty string somehow reaches here
         if (word.isEmpty()) {
             return word;
         }
@@ -134,7 +125,6 @@ public class Book
         {
             convertedWord = Character.toUpperCase(convertedWord.charAt(0)) + convertedWord.substring(1);
         }
-
         convertedWord += punctuation;
         return convertedWord;
     }
@@ -142,25 +132,16 @@ public class Book
     public String translateSentence(String sentence)
     {
         String[] words = sentence.split(" ");
-        StringBuilder retSentence = new StringBuilder(); // Use StringBuilder for efficiency
-
+        StringBuilder retSentence = new StringBuilder();
         for (int i = 0; i < words.length; i++) 
         {
             String word = words[i];
-            
-            // *** FIX FOR StringIndexOutOfBoundsException ***
-            // If the word is empty (due to multiple spaces), just append a space 
-            // and continue to the next word.
             if (word.isEmpty()) {
                 retSentence.append(" ");
                 continue; 
             }
-            // ***********************************************
             
             retSentence.append(translateWord(word));
-            
-            // Only add a space if it's not the last word, OR if the original 
-            // sentence ended with a space that created a trailing empty string
             if (i < words.length - 1) 
             {
                 retSentence.append(" ");
