@@ -8,7 +8,7 @@ public class Book
 
     public Book(String url)
     {
-        book = ""; // Initialize the book string
+        book = ""; 
         readBook(url);
     }
 
