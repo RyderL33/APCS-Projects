@@ -44,6 +44,20 @@ public class Book
         return book;
     }
 
+    /**
+     * Counts the total number of words in the translated book.
+     * @return The number of words.
+     */
+    public int wordCount()
+    {
+        if (book == null || book.trim().isEmpty()) {
+            return 0;
+        }
+        // Split the book content by one or more whitespace characters (including spaces, tabs, newlines)
+        String[] words = book.trim().split("\\s+");
+        return words.length;
+    }
+
     public String pigLatin(String word)
     {
         if (word == null || word.length() == 0) return word;
