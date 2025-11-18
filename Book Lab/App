@@ -7,6 +7,7 @@
       System.out.println(aBook.pigLatin("What?!?"));
       System.out.println(aBook.pigLatin("Allons-y"));
       System.out.println(aBook.getTranslatedBook());
+      System.out.println(aBook.wordCount());
       
       /*System.out.println(aBook.translateWord("hello"));
       System.out.println(aBook.translateWord("What?!?"));
