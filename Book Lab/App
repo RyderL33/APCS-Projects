@@ -1,19 +1,45 @@
+  import java.io.BufferedWriter;
+  import java.io.FileWriter;
+  import java.io.IOException;
   import java.net.URL;
+
+
 
   class App {
     public static void main(String[] args) {
-      Book aBook = new Book("https://www.gutenberg.org/cache/epub/6130/pg6130.txt");
-      System.out.println(aBook.pigLatin("hello"));
-      System.out.println(aBook.pigLatin("What?!?"));
-      System.out.println(aBook.pigLatin("Allons-y"));
+      Book aBook = new Book("https://www.gutenberg.org/cache/epub/77377/pg77377.txt \r\n" + //
+                "");
+      //System.out.println(aBook.pigLatin("hello"));
+      //System.out.println(aBook.pigLatin("What?!?"));
+      //System.out.println(aBook.pigLatin("Allons-y"));
       System.out.println(aBook.getTranslatedBook());
-      System.out.println(aBook.wordCount());
+      System.out.println("Word Count: " + aBook.wordCount());
       
       /*System.out.println(aBook.translateWord("hello"));
       System.out.println(aBook.translateWord("What?!?"));
       System.out.println(aBook.translateWord("Allons-y"));*/
       
       //System.out.println(aBook.translateSentence("I can now speak in Pig-Latin? WOW!!! I can translate words and sentences for the students at Foothill High School."));
-
     }
-  }
+
+
+}
+    
+   class WriteStringWithBuffer {
+    // The main method here is now legal because it is inside a top-level class.
+    public static void main(String[] args) {
+        Book aBook = new Book("https://www.gutenberg.org/cache/epub/77377/pg77377.txt");
+        String data = aBook.getTranslatedBook();
+        String fileName = "PigLatin_mychosenBook.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(data);
+            System.out.println("String successfully written to " + fileName);
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+      }
+    }
+
+  
+
