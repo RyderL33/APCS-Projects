@@ -38,7 +38,7 @@ public class Maze {
         if(r < 0 || c < 0 || r >= rows || c >= cols) return false;
 
         // If wall or already visited (2 or 3), skip
-        if(grid[r][c] == 1 || grid[r][c] == 3) return false;
+        if(grid[r][c] == 1 || grid[r][c] == 2 || grid[r][c] == 3) return false;
 
         // If we've reached the goal
         if(r == rows-1 && c == cols-1){
